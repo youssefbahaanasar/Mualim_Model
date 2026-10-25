@@ -1,3 +1,8 @@
+> مسار الأحاديث: أُضيفت نسخة أولية لمراجعة قراءة **الأربعين النووية**. راجع [دليل التشغيل](HADITH_README.md).
+
+لتجربة الأحاديث على Windows: ثبّت Python 3.12 وFFmpeg، ثم افتح `Setup-Hadith.cmd` مرة واحدة
+وبعد اكتماله افتح `Run-Hadith.cmd`. ينزّل التطبيق نموذج Whisper عند أول تحليل صوتي.
+
 <div align="center">
 
 [English](README_EN.md) | **العربية**

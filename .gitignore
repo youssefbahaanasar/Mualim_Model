@@ -1,5 +1,17 @@
 # build source
 **/*.egg-info/
+build/
+
+# Local Python environment, model cache and setup tools
+.venv/
+.tools/
+.cache/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+dist/
+recordings/
 
 # pypdl logs
 **pypdl.log

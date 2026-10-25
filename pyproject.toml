@@ -21,7 +21,7 @@ dependencies = [
     "quran-transcript>=0.6.1",
     "rich>=14.1.0",
     "torch>=2.7.0",
-    "transformers>=4.55.0",
+    "transformers>=4.55.0,<5",
 ]
 requires-python = ">=3.10"
 classifiers = [
@@ -37,10 +37,17 @@ classifiers = [
 # Optional dependencies
 [project.optional-dependencies]
 
+hadith = [
+    "gradio>=6,<7",
+    "librosa>=0.11.0",
+    "transformers>=4.55.0,<5",
+]
+
 test = [
   "librosa>=0.11.0",
   "numba>=0.61.2",
   "pytest",
+  "httpx>=0.28.1",
 ]
 ui = [
     "gradio>=5.43.1",
@@ -59,6 +66,7 @@ engine = [
 
 
 [project.scripts]
+hadith-muaalem-ui = "hadith_muaalem.gradio_app:main"
 quran-muaalem-ui = "quran_muaalem.gradio_app:main"
 quran-muaalem-engine = "quran_muaalem.engine.main:main"
 quran-muaalem-app = "quran_muaalem.app:main"
@@ -68,5 +76,6 @@ Homepage = "https://github.com/obadx/quran-muaalem"
 Issues = "https://github.com/obadx/quran-muaalem/issues"
 
 # for addint data: https://setuptools.pypa.io/en/latest/userguide/datafiles.html#package-data
-# [tool.setuptools.package-data]
+[tool.setuptools.package-data]
+hadith_muaalem = ["data/*.json", "data/SOURCE-LICENSE"]
 # quran_transcript = ["quran-script/*"]

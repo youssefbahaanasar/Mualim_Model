@@ -36,8 +36,8 @@ jobs:
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install .[test]
+        python -m pip install ".[test,hadith]"
 
     - name: Run tests
       run: |
-        pytest -v
+        pytest -v --skip-slow

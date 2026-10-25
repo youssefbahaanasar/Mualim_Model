@@ -3,7 +3,6 @@ from typing import Optional, Union
 from transformers.models.wav2vec2_bert.modeling_wav2vec2_bert import (
     Wav2Vec2BertPreTrainedModel,
     Wav2Vec2BertModel,
-    _HIDDEN_STATES_START_POSITION,
 )
 from transformers.utils import auto_docstring
 from transformers.modeling_outputs import CausalLMOutput
@@ -81,7 +80,7 @@ class Wav2Vec2BertForMultilevelCTC(Wav2Vec2BertPreTrainedModel):
             attention_mask=attention_mask,
             output_attentions=output_attentions,
             output_hidden_states=output_hidden_states,
-            return_dict=return_dict,
+            return_dict=True,
         )
 
         hidden_states = outputs[0]
@@ -134,7 +133,12 @@ class Wav2Vec2BertForMultilevelCTC(Wav2Vec2BertPreTrainedModel):
                     )
 
         if not return_dict:
-            output = (level_to_logits,) + outputs[_HIDDEN_STATES_START_POSITION:]
+            # Use named public fields rather than Transformers' private tuple offset.
+            output = (level_to_logits,)
+            if outputs.hidden_states is not None:
+                output += (outputs.hidden_states,)
+            if outputs.attentions is not None:
+                output += (outputs.attentions,)
             return ((loss,) + output) if loss is not None else output
 
         return CausalLMOutput(
